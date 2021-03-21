@@ -6,7 +6,7 @@ import (
 	"github.com/T-Graduation-Project/book-server/protobuf"
 )
 
-type BookApi struct {}
+type BookApi struct{}
 
 var Books = &BookApi{}
 
@@ -25,14 +25,12 @@ func (s *BookApi) AddBooks(
 
 func (s *BookApi) UpdateBooks(
 	ctx context.Context, req *protobuf.UpdateBooksReq) (*protobuf.UpdateBooksRsp, error) {
-	rsp, err := service.UpdateBooks()
+	rsp, err := service.UpdateBooks(req)
 	return rsp, err
 }
 
 func (s *BookApi) DeleteBooks(
 	ctx context.Context, req *protobuf.DeleteBooksReq) (*protobuf.DeleteBooksRsp, error) {
-	rsp, err := service.DeleteBooks()
+	rsp, err := service.DeleteBooks(req)
 	return rsp, err
 }
-
-
