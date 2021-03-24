@@ -20,11 +20,4 @@
 [gfcli]
 # 自定义DAO生成配置(默认是读取database配置)
 [[gfcli.gen.dao]]
-    link   = "mysql:root:123456@tcp(9.135.9.19:3306)/library"
-    tables = "book_info"
-[[gfcli.gen.dao]]
-    link  = "mysql:root:123456@tcp(9.135.9.19:3306)/library"
-    tables = "user_info"
-[[gfcli.gen.dao]]
-    link  = "mysql:root:123456@tcp(9.135.9.19:3306)/library"
-    tables = "borrow_list"
+    link   = "mysql:root:123456@tcp(159.75.125.159:3307)/library"

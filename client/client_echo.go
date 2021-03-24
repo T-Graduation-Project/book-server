@@ -19,24 +19,35 @@ func main() {
 	}
 	defer conn.Close()
 	c := protobuf.NewBooksClient(conn)
-
+	// 获取书籍列表
 	r, err := c.GetBookList(context.Background(), &protobuf.GetBookListReq{})
+	log.Println(r.Books)
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}
 	log.Printf("####### get server Greeting response: %s", r)
 
+	// 添加书籍
 	book := &protobuf.Book{
 		Name:         "test",
-		Author:       "tianhao",
+		Author:       "tianhao1",
 		Publish:      "hhh",
 		Introduction: "hhh",
 		Number:       5,
-		ISBN:         "321",
+		ISBN:         "112",
+	}
+	book2 := &protobuf.Book{
+		Name:         "test2",
+		Author:       "tianhao1",
+		Publish:      "hhh",
+		Introduction: "hhh",
+		Number:       5,
+		ISBN:         "113",
 	}
 	req := &protobuf.AddBooksReq{
 		Books: []*protobuf.Book{
 			book,
+			book2,
 		},
 	}
 	r2, err := c.AddBooks(context.Background(), req)
@@ -45,9 +56,31 @@ func main() {
 	}
 	log.Printf("####### get server Greeting response: %s", r2)
 
-	//r2, err := c.ReturnBook(context.Background(), &protobuf.ReturnBookReq{UserId: 1, BookId: 1})
-	//if err != nil {
-	//	log.Fatalf("could not greet: %v", err)
-	//}
-	//log.Printf("####### get server Greeting response: %s", r2)
+	// 更新书籍列表
+	book.Name = "update1"
+	book2.Name = "update2"
+	req3 := &protobuf.UpdateBooksReq{
+		Books: []*protobuf.Book{
+			book,
+			book2,
+		},
+	}
+	r3, err := c.UpdateBooks(context.Background(), req3)
+	if err != nil {
+		log.Fatalf("could not greet: %v", err)
+	}
+	log.Printf("####### get server Greeting response: %s", r3)
+
+	// 删除书籍列表
+	req4 := &protobuf.DeleteBooksReq{
+		Books: []*protobuf.Book{
+			book,
+			book2,
+		},
+	}
+	r4, err := c.DeleteBooks(context.Background(), req4)
+	if err != nil {
+		log.Fatalf("could not greet: %v", err)
+	}
+	log.Printf("####### get server Greeting response: %s", r4)
 }

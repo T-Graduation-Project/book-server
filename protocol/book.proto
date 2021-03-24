@@ -3,50 +3,54 @@ package book;
 option go_package = "protobuf";
 
 service Books {
-  rpc GetBookList(GetBookListReq) returns (GetBookListRsp) {}
-  rpc AddBooks(AddBooksReq) returns (AddBooksRsp) {}
-  rpc UpdateBooks(UpdateBooksReq) returns (UpdateBooksRsp) {}
-  rpc DeleteBooks(DeleteBooksReq) returns (DeleteBooksRsp) {}
+    rpc GetBookList(GetBookListReq) returns (GetBookListRsp) {}
+    rpc AddBooks(AddBooksReq) returns (AddBooksRsp) {}
+    rpc UpdateBooks(UpdateBooksReq) returns (UpdateBooksRsp) {}
+    rpc DeleteBooks(DeleteBooksReq) returns (DeleteBooksRsp) {}
 }
 
 message Book {
-  int64 id = 1;
-  string name = 2;
-  string author = 3;
-  string publish = 4;
-  string introduction = 5;
-  int64 number = 6;
-  string ISBN = 7;
+    int64 id = 1;
+    string name = 2;
+    string author = 3;
+    string publish = 4;
+    string introduction = 5;
+    int64 number = 6;
+    string ISBN = 7;
 }
 
 message GetBookListReq {}
 
 message GetBookListRsp {
-  repeated Book books = 1;
+    int64 code = 1;
+    repeated Book books = 2;
 }
 
 message AddBooksReq {
-  repeated Book books = 1;
+    repeated Book books = 1;
 }
 
 message AddBooksRsp {
-  string msg = 1;
+    int64 code = 1;
+    string msg = 2;
 }
 
 message UpdateBooksReq {
-  repeated Book books = 1;
+    repeated Book books = 1;
 }
 
 message UpdateBooksRsp {
-  string msg = 1;
+    int64 code = 1;
+    string msg = 2;
 }
 
 message DeleteBooksReq {
-  repeated Book books = 1;
+    repeated Book books = 1;
 }
 
 message DeleteBooksRsp {
-  string msg = 1;
+    int64 code = 1;
+    string msg = 2;
 }
 
 
