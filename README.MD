@@ -1,5 +1,5 @@
-# borrow-server
-借阅服务
+# book-server
+图书服务
 ## HOW TO RUN
 ~~~bash
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build

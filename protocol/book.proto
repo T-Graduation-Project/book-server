@@ -1,6 +1,5 @@
 syntax = "proto3";
 package book;
-option go_package = "protobuf";
 
 service Books {
     rpc GetBookList(GetBookListReq) returns (GetBookListRsp) {}
