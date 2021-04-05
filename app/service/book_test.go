@@ -1,7 +1,6 @@
-package api
+package service
 
 import (
-	"github.com/T-Graduation-Project/book-server/app/service"
 	"github.com/T-Graduation-Project/book-server/protobuf"
 	. "github.com/smartystreets/goconvey/convey"
 	"testing"
@@ -12,9 +11,9 @@ func TestBookService(t *testing.T) {
 	Convey("Test GetBookList", t, func() {
 
 		Convey("调用函数", func() {
-			rsp, err := service.GetBookList()
+			rsp, err := GetBookList()
 			if err != nil {
-				service.log.Fatalf("Get book list error %v", err)
+				log.Fatalf("Get book list error %v", err)
 			}
 
 			Convey("判断返回码 == 0", func() {
@@ -48,9 +47,9 @@ func TestBookService(t *testing.T) {
 		}
 
 		Convey("调用函数", func() {
-			rsp, err := service.AddBooks(req)
+			rsp, err := AddBooks(req)
 			if err != nil {
-				service.log.Fatalf("Get book list error %v", err)
+				log.Fatalf("Get book list error %v", err)
 			}
 
 			Convey("判断返回码 == 0", func() {
