@@ -7,9 +7,7 @@ require (
 	github.com/golang/protobuf v1.5.1
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/grokify/html-strip-tags-go v0.0.1 // indirect
-	github.com/micro/cli v0.2.0
 	github.com/micro/cli/v2 v2.1.2 // indirect
-	github.com/micro/go-micro v1.18.0
 	github.com/micro/go-micro/v2 v2.9.1
 	github.com/micro/micro/v2 v2.9.3 // indirect
 	github.com/micro/protoc-gen-micro/v2 v2.1.1 // indirect

@@ -12,8 +12,7 @@ docker run --rm -it -p 8199:8199 csighub.tencentyun.com/urftian/tendoc-oms-serve
 ## 开发常用命令
 ~~~bash
 # proto 协议生成代码
-protoc --gofast_out=plugins=grpc:. protocol/borrow.proto
-
+protoc --proto_path=. --micro_out=. --go_out=. protocol/user.proto
 # model 默认使用 config.toml的[database.default]
 gf gen dao
 gf gen dao -l "mysql:username:password@tcp(ip:port)/tablename"

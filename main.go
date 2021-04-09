@@ -19,6 +19,6 @@ func main() {
 	server.Init()
 	protobuf.RegisterBooksHandler(server.Server(), new(service.BookApi))
 	if err := server.Run(); err != nil {
-		log.Fatalf("failed to serve: %v", err)
+		log.Fatalf("failed to server: %v", err)
 	}
 }

@@ -15,10 +15,15 @@ message Book {
     string publish = 4;
     string introduction = 5;
     int64 number = 6;
-    string ISBN = 7;
+    int64 max_number = 7;
+    string ISBN = 8;
 }
 
-message GetBookListReq {}
+message GetBookListReq {
+    string name = 1;
+    string author = 2;
+    string publish = 3;
+}
 
 message GetBookListRsp {
     int64 code = 1;

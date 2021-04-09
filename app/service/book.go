@@ -17,9 +17,17 @@ type BookApi struct{}
 func (s *BookApi) GetBookList(
 	ctx context.Context, req *protobuf.GetBookListReq, rsp *protobuf.GetBookListRsp) error {
 	rsp.Code = 1
-	err := db.Table("book_info").Scan(&rsp.Books)
-	if err != nil {
-		return err
+	condition := genCondition(req)
+	if len(condition) == 0 {
+		err := db.Table("book_info").Scan(&rsp.Books)
+		if err != nil {
+			return err
+		}
+	} else {
+		err := db.Table("book_info").Where(condition).Scan(&rsp.Books)
+		if err != nil {
+			return err
+		}
 	}
 	log.Info(rsp)
 	rsp.Code = 0
@@ -128,4 +136,18 @@ func isExisted(isbnCode string) (bool, error) {
 		return true, nil
 	}
 	return false, nil
+}
+
+func genCondition(req *protobuf.GetBookListReq) g.Map {
+	condition := g.Map{}
+	if req.Name != "" {
+		condition["name"] = req.Name
+	}
+	if req.Author != "" {
+		condition["author"] = req.Author
+	}
+	if req.Publish != "" {
+		condition["publish"] = req.Publish
+	}
+	return condition
 }

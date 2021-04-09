@@ -18,7 +18,9 @@ func main() {
 	)
 	service.Init()
 	client := protobuf.NewBooksService("book", service.Client())
-	rsp, err := client.GetBookList(context.TODO(), &protobuf.GetBookListReq{})
+	rsp, err := client.GetBookList(context.TODO(), &protobuf.GetBookListReq{
+		Name: "test",
+	})
 	if err != nil {
 		log.Info(err)
 	}
