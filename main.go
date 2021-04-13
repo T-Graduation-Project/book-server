@@ -5,6 +5,8 @@ import (
 	"github.com/T-Graduation-Project/book-server/protobuf"
 	"github.com/gogf/gf/frame/g"
 	"github.com/micro/go-micro/v2"
+	"github.com/micro/go-micro/v2/registry"
+	"github.com/micro/go-plugins/registry/etcdv3/v2"
 )
 
 var (
@@ -12,9 +14,13 @@ var (
 )
 
 func main() {
+	log.Info()
+	//使用etcd创建注册中心
 	server := micro.NewService(
 		micro.Name("book"),
-		micro.Version("latest"),
+		micro.Registry(etcdv3.NewRegistry(
+			registry.Addrs(g.Cfg().GetString("registry_addr")),
+		)),
 	)
 	server.Init()
 	protobuf.RegisterBooksHandler(server.Server(), new(service.BookApi))

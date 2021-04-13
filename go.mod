@@ -9,12 +9,13 @@ require (
 	github.com/grokify/html-strip-tags-go v0.0.1 // indirect
 	github.com/micro/cli/v2 v2.1.2 // indirect
 	github.com/micro/go-micro/v2 v2.9.1
+	github.com/micro/go-plugins/registry/etcdv3/v2 v2.9.1
 	github.com/micro/micro/v2 v2.9.3 // indirect
 	github.com/micro/protoc-gen-micro/v2 v2.1.1 // indirect
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
-	github.com/smartystreets/goconvey v1.6.4 // indirect
-	golang.org/x/net v0.0.0-20210316092652-d523dce5a7f4
+	github.com/smartystreets/goconvey v1.6.4
+	golang.org/x/net v0.0.0-20210316092652-d523dce5a7f4 // indirect
 	google.golang.org/genproto v0.0.0-20210323160006-e668133fea6a // indirect
 	google.golang.org/grpc v1.36.0 // indirect
 	google.golang.org/grpc/examples v0.0.0-20210324172016-702608ffae4d // indirect
