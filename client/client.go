@@ -2,10 +2,11 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/T-Graduation-Project/book-server/protobuf"
 	"github.com/gogf/gf/frame/g"
 	"github.com/micro/go-micro/v2"
+	"github.com/micro/go-micro/v2/registry"
+	"github.com/micro/go-plugins/registry/etcdv3/v2"
 )
 
 var (
@@ -15,6 +16,9 @@ var (
 func main() {
 	service := micro.NewService(
 		micro.Name("book.client"),
+		micro.Registry(etcdv3.NewRegistry(
+			registry.Addrs(g.Cfg().GetString("registry_addr")),
+		)),
 	)
 	service.Init()
 	client := protobuf.NewBooksService("book", service.Client())
@@ -24,7 +28,7 @@ func main() {
 	if err != nil {
 		log.Info(err)
 	}
-	fmt.Println(rsp.Books)
+	log.Info(rsp.Books)
 
 	book := &protobuf.Book{
 		Name:         "testmicro",
