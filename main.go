@@ -14,8 +14,6 @@ var (
 )
 
 func main() {
-	log.Info()
-	//使用etcd创建注册中心
 	server := micro.NewService(
 		micro.Name("book"),
 		micro.Registry(etcdv3.NewRegistry(

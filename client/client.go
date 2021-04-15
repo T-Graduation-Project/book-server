@@ -7,6 +7,7 @@ import (
 	"github.com/micro/go-micro/v2"
 	"github.com/micro/go-micro/v2/registry"
 	"github.com/micro/go-plugins/registry/etcdv3/v2"
+	"time"
 )
 
 var (
@@ -17,10 +18,9 @@ func main() {
 	service := micro.NewService(
 		micro.Name("book.client"),
 		micro.Registry(etcdv3.NewRegistry(
-			registry.Addrs(g.Cfg().GetString("registry_addr")),
+			registry.Addrs("121.5.238.116:2379"),
 		)),
 	)
-	service.Init()
 	client := protobuf.NewBooksService("book", service.Client())
 	rsp, err := client.GetBookList(context.TODO(), &protobuf.GetBookListReq{
 		Name: "test",
@@ -29,7 +29,7 @@ func main() {
 		log.Info(err)
 	}
 	log.Info(rsp.Books)
-
+	time.Sleep(1000)
 	book := &protobuf.Book{
 		Name:         "testmicro",
 		Author:       "tianhao1",
@@ -48,7 +48,7 @@ func main() {
 		log.Fatalf("could not greet: %v", err)
 	}
 	log.Info("####### get server Greeting response:", r2)
-
+	time.Sleep(1000)
 	// 更新书籍列表
 	book.Name = "update"
 	req3 := &protobuf.UpdateBooksReq{
@@ -61,7 +61,7 @@ func main() {
 		log.Fatalf("could not greet: %v", err)
 	}
 	log.Info("####### get server Greeting response:", r3)
-
+	time.Sleep(1000)
 	// 删除书籍列表
 	req4 := &protobuf.DeleteBooksReq{
 		Books: []*protobuf.Book{
