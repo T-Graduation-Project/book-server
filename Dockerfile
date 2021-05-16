@@ -10,3 +10,4 @@ RUN chmod +x $WORKDIR/$SERVER_NAME
 ADD config $WORKDIR/config
 WORKDIR $WORKDIR
 ENTRYPOINT ["./book-server"]
+                    

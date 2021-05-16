@@ -46,6 +46,7 @@ type BooksService interface {
 	AddBooks(ctx context.Context, in *AddBooksReq, opts ...client.CallOption) (*AddBooksRsp, error)
 	UpdateBooks(ctx context.Context, in *UpdateBooksReq, opts ...client.CallOption) (*UpdateBooksRsp, error)
 	DeleteBooks(ctx context.Context, in *DeleteBooksReq, opts ...client.CallOption) (*DeleteBooksRsp, error)
+	RecommendBook(ctx context.Context, in *RecommendBookReq, opts ...client.CallOption) (*RecommendBookRsp, error)
 }
 
 type booksService struct {
@@ -100,6 +101,16 @@ func (c *booksService) DeleteBooks(ctx context.Context, in *DeleteBooksReq, opts
 	return out, nil
 }
 
+func (c *booksService) RecommendBook(ctx context.Context, in *RecommendBookReq, opts ...client.CallOption) (*RecommendBookRsp, error) {
+	req := c.c.NewRequest(c.name, "Books.RecommendBook", in)
+	out := new(RecommendBookRsp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Books service
 
 type BooksHandler interface {
@@ -107,6 +118,7 @@ type BooksHandler interface {
 	AddBooks(context.Context, *AddBooksReq, *AddBooksRsp) error
 	UpdateBooks(context.Context, *UpdateBooksReq, *UpdateBooksRsp) error
 	DeleteBooks(context.Context, *DeleteBooksReq, *DeleteBooksRsp) error
+	RecommendBook(context.Context, *RecommendBookReq, *RecommendBookRsp) error
 }
 
 func RegisterBooksHandler(s server.Server, hdlr BooksHandler, opts ...server.HandlerOption) error {
@@ -115,6 +127,7 @@ func RegisterBooksHandler(s server.Server, hdlr BooksHandler, opts ...server.Han
 		AddBooks(ctx context.Context, in *AddBooksReq, out *AddBooksRsp) error
 		UpdateBooks(ctx context.Context, in *UpdateBooksReq, out *UpdateBooksRsp) error
 		DeleteBooks(ctx context.Context, in *DeleteBooksReq, out *DeleteBooksRsp) error
+		RecommendBook(ctx context.Context, in *RecommendBookReq, out *RecommendBookRsp) error
 	}
 	type Books struct {
 		books
@@ -141,4 +154,8 @@ func (h *booksHandler) UpdateBooks(ctx context.Context, in *UpdateBooksReq, out 
 
 func (h *booksHandler) DeleteBooks(ctx context.Context, in *DeleteBooksReq, out *DeleteBooksRsp) error {
 	return h.BooksHandler.DeleteBooks(ctx, in, out)
+}
+
+func (h *booksHandler) RecommendBook(ctx context.Context, in *RecommendBookReq, out *RecommendBookRsp) error {
+	return h.BooksHandler.RecommendBook(ctx, in, out)
 }

@@ -6,6 +6,7 @@ service Books {
     rpc AddBooks(AddBooksReq) returns (AddBooksRsp) {}
     rpc UpdateBooks(UpdateBooksReq) returns (UpdateBooksRsp) {}
     rpc DeleteBooks(DeleteBooksReq) returns (DeleteBooksRsp) {}
+    rpc RecommendBook(RecommendBookReq) returns (RecommendBookRsp) {}
 }
 
 message Book {
@@ -57,5 +58,13 @@ message DeleteBooksRsp {
     string msg = 2;
 }
 
+message RecommendBookReq {
+    string username = 1;
+}
+
+message RecommendBookRsp {
+    int64 code = 1;
+    repeated Book books = 2;
+}
 
 
