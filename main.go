@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/T-Graduation-Project/book-server/app/service"
 	"github.com/T-Graduation-Project/book-server/protobuf"
+	"github.com/T-Graduation-Project/book-server/service"
 	"github.com/gogf/gf/frame/g"
 	"github.com/micro/go-micro/v2"
 	"github.com/micro/go-micro/v2/registry"
